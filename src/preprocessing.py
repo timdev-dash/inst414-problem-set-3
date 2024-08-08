@@ -6,7 +6,15 @@ PART 1: PRE-PROCESSING
     - These should return values when called by the main.py
 '''
 
+# Standard library imports
+from pathlib import Path
+
+# Third party imports
 import pandas as pd
+
+# Setting constants
+MAIN_FOLDER: Path = Path(__file__).absolute().parent
+DATA_FOLDER: str = '../data/'
 
 def load_data():
     '''
@@ -16,7 +24,18 @@ def load_data():
         model_pred_df (pd.DataFrame): DataFrame containing model predictions
         genres_df (pd.DataFrame): DataFrame containing genre information
     '''
-    # Your code here
+
+    # Setting file names for the data sources    
+    model_file_name: str = 'prediction_model_03.csv'
+    genres_file_name: str = 'genres.csv'
+    model_path_and_file: str = DATA_FOLDER + model_file_name
+    genres_path_and_file: str = DATA_FOLDER + genres_file_name
+
+    # Saving the files as dataframes to return
+    model_pred_df: pd = pd.read_csv(MAIN_FOLDER / model_path_and_file, sep = ',', encoding = 'UTF-8')
+    genres_df: pd = pd.read_csv(MAIN_FOLDER / genres_path_and_file, sep = ',', encoding = 'UTF-8')
+
+    return model_pred_df, genres_df
 
 
 def process_data(model_pred_df, genres_df):
