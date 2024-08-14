@@ -96,7 +96,6 @@ def process_data(model_pred_df, genres_df):
         # Counting true genres
         for movie_genre in actual_genres:
             if movie_genre == '':
-                print('Blank genre found in movie ' + model_pred_df.iloc[movie_index, 0])
                 continue
             genre_true_counts[movie_genre] += 1
 
